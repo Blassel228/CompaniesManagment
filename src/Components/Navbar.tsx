@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { FaHome, FaUser } from 'react-icons/fa';
+import { SiNetlify } from 'react-icons/si';
 
 const NavbarContainer = styled.nav`
   display: flex;
@@ -48,6 +49,9 @@ const Navbar = () => {
   return (
     <NavbarContainer>
       <NavLinksLeft>
+        <IconContainer>
+            <SiNetlify size={40}/>
+        </IconContainer>
         <IconContainer>
           <Link to="/welcome">
             <FaHome size={24} color="#fff" />
