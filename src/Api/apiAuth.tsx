@@ -1,0 +1,29 @@
+import baseApi from "./baseApi";
+import TokenResponse  from "../Types/TokenResponse";
+import { AxiosError } from "axios";
+
+export async function loginGetToken(username: string, password: string): Promise<TokenResponse> {
+  try {
+    const response = await baseApi.post("/token/login", {
+      username,
+      password,
+    });
+    return response.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      throw new Error(error.response?.data?.detail || "Login failed");
+    }
+    throw new Error("An unexpected error occurred");
+  }
+}
+
+export async function loginGetUserByToken(token){
+  try {
+    const response = await baseApi.get('/token/users/me', {
+      headers: {Authorization: `Bearer ${token}`},
+    });
+    return response.data;
+  } catch (error) {
+    if (error) throw new Error(error.data.detail);
+  }
+}
