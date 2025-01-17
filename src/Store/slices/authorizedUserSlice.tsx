@@ -12,11 +12,15 @@ const authorizedUserSlice = createSlice({
   name: 'authorizedUser',
   initialState,
   reducers: {
-    setAuthorizedUser(state, action: PayloadAction<any>) {
-      state.user = action.payload.user;
+    setAuthorizedUser(state, action: PayloadAction<{ user: User }>) {
+      state.id = action.payload.user.id;
+      state.username = action.payload.user.username;
+      state.email = action.payload.user.email;
     },
     clearAuthorizedUser(state) {
-      state.user = null;
+      state.id = "";
+      state.username = "";
+      state.email = "";
     },
   },
 });

@@ -13,10 +13,14 @@ const fetchedUserSlice = createSlice({
   initialState,
   reducers: {
     setFetchedUser(state, action: PayloadAction<User>) {
-      state.user = action.payload;
+      state.id = action.payload.id;
+      state.username = action.payload.username;
+      state.email = action.payload.email;
     },
     clearFetchedUser(state) {
-      state.user = null;
+      state.id = "";
+      state.username = "";
+      state.email = "";
     },
   },
 });
