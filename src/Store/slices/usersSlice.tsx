@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {User} from "../../Types/User.tsx";
 
 interface UsersState {
-  users: any[];
+  users: User[];
 }
 
 const initialState: UsersState = {
@@ -12,7 +13,7 @@ const usersSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
-    setUsers(state, action: PayloadAction<any[]>) {
+    setUsers(state, action: PayloadAction<User[]>) {
       state.users = action.payload;
     },
     clearUsers(state) {

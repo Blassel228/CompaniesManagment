@@ -1,6 +1,7 @@
 import baseApi from "./baseApi";
 import TokenResponse  from "../Types/TokenResponse";
 import { AxiosError } from "axios";
+import {User} from "../Types/User.tsx";
 
 export async function loginGetToken(username: string, password: string): Promise<TokenResponse> {
   try {
@@ -17,13 +18,13 @@ export async function loginGetToken(username: string, password: string): Promise
   }
 }
 
-export async function loginGetUserByToken(token){
+export async function loginGetUserByToken(token: string): Promise<User> {
   try {
     const response = await baseApi.get('/token/users/me', {
-      headers: {Authorization: `Bearer ${token}`},
+      headers: { Authorization: `Bearer ${token}` },
     });
     return response.data;
   } catch (error) {
-    if (error) throw new Error(error.data.detail);
+     throw new Error(error.response?.data?.detail || "Login failed");
   }
 }

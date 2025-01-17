@@ -1,4 +1,4 @@
-import GlobalStyles from "./styles/GlobalStyles.tsx";
+import GlobalStyles from "./Styles/GlobalStyles.tsx";
 import Routers from "./Components/Routers.tsx";
 
 function App() {
