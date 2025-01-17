@@ -1,3 +1,5 @@
 export const routerKeys ={
-    welcome: "/welcome"
+    welcome: "/welcome",
+    dashboard: "/dashboard",
+    login: "/login"
 }
