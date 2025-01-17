@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
 const checkAuth = (): boolean => {
-  return Boolean(localStorage.getItem('authToken'));
+  return Boolean(localStorage.getItem('token'));
 };
 
 const PrivateRoute: React.FC = () => {

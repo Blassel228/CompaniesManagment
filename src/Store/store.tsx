@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
 import authorizedUserSlice from './slices/authorizedUserSlice';
-import usersSlice from './slices/usersSlice';
 import fetchedUserSlice from "./slices/fetchedUserSlice";
 import storage from "redux-persist/lib/storage";
 
@@ -14,10 +13,15 @@ const persistedUserReducer = persistReducer(persistConfig, authorizedUserSlice);
 
 const store = configureStore({
   reducer: {
-    users: usersSlice,
     fetchedUser: fetchedUserSlice,
     user: persistedUserReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ['persist/PERSIST'],
+      },
+    }),
 });
 
 const persistor = persistStore(store);

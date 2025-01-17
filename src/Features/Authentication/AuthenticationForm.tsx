@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Button from "../../Components/Button.tsx";
-import useAuth from "./useAuth.tsx";
-import {useState} from "react";
+import Button from "../../Components/Button";
+import useAuth from "./useAuth";
+import { useState } from "react";
 
 const Form = styled.form`
   background-color: #1a1a1a;
@@ -37,23 +37,47 @@ const Label = styled.label`
 `;
 
 export default function AuthenticationForm() {
-    const {login} = useAuth();
-    const [password, setPassword] = useState();
-    const [username, setUsername] = useState();
+  const { login } = useAuth();
+  const [password, setPassword] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    setLoading(true);
+    try {
+      await login(username, password);
+    } catch (error) {
+      throw new Error(error.response?.data?.detail || "Something went wrong");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-      <Form>
-       <div>
+    <Form>
+      <div>
         <Label htmlFor="username">Username</Label>
-        <Input type="text" id="username" name="username" value={username}
-               onChange={(event) => setUsername(event.target.value)}/>
+        <Input
+          type="text"
+          id="username"
+          name="username"
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+        />
       </div>
       <div>
         <Label htmlFor="password">Password</Label>
-        <Input type="password" id="password" name="password" value={password}
-               onChange={(event) => setPassword(event.target.value)}/>
+        <Input
+          type="password"
+          id="password"
+          name="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+        />
       </div>
-        <Button onClick={async()=> login(username, password)}>Submit Form</Button>
-      </Form>
+      <Button type="submit" disabled={loading} onClick={handleSubmit}>
+        {loading ? "Loading..." : "Submit Form"}
+      </Button>
+    </Form>
   );
 }

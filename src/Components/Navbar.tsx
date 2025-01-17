@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { FaHome, FaUser } from 'react-icons/fa';
 import { SiNetlify } from 'react-icons/si';
+import Button from "./Button.tsx";
+import useAuth from "../Features/Authentication/useAuth.tsx";
 
 const NavbarContainer = styled.nav`
   display: flex;
@@ -46,6 +48,7 @@ const IconContainer = styled.div`
 `;
 
 const Navbar = () => {
+    const { logout } = useAuth();
   return (
     <NavbarContainer>
       <NavLinksLeft>
@@ -65,6 +68,7 @@ const Navbar = () => {
       <NavLinksRight>
           <NavLinkStyled to="/account">Account</NavLinkStyled>
           <NavLinkStyled to="/login">Login</NavLinkStyled>
+          <Button onClick={logout}>Logout</Button>
       </NavLinksRight>
     </NavbarContainer>
   );
