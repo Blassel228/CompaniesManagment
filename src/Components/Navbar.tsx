@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { FaHome, FaUser } from 'react-icons/fa';
-import { SiNetlify } from 'react-icons/si';
+import Logo from "./Logo.tsx";
 
 const NavbarContainer = styled.nav`
   display: flex;
@@ -31,40 +31,28 @@ const NavLinkStyled = styled(Link)`
   color: #fff;
   font-size: 1.6rem;
   font-family: 'Consolas', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
-  margin-right: 2rem;
   transition: color 0.3s ease;
-
   &:hover {
     color: #6200ea;
   }
 `;
 
-const IconContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-right: 1rem;
-`;
 
 const Navbar = () => {
   return (
     <NavbarContainer>
       <NavLinksLeft>
-        <IconContainer>
-            <SiNetlify size={40}/>
-        </IconContainer>
-        <IconContainer>
-          <Link to="/welcome">
-            <FaHome size={24} color="#fff" />
-          </Link>
-        </IconContainer>
-        <IconContainer>
-          <FaUser size={24} color="#fff" />
-        </IconContainer>
-        <NavLinkStyled to="/dashboard">Dashboard</NavLinkStyled>
+      <Logo />
+      <Link to="/welcome">
+        <FaHome size={24} color="#fff" />
+      </Link>
+      <FaUser size={24} color="#fff" />
+      <NavLinkStyled to="/dashboard">Dashboard</NavLinkStyled>
       </NavLinksLeft>
       <NavLinksRight>
           <NavLinkStyled to="/account">Account</NavLinkStyled>
           <NavLinkStyled to="/login">Login</NavLinkStyled>
+          <NavLinkStyled to="/register">Register</NavLinkStyled>
       </NavLinksRight>
     </NavbarContainer>
   );
