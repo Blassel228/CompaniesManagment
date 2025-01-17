@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import TokenResponse from "../../Types/TokenResponse";
 import { User } from "../../Types/User";
+import {removeItem, setItem} from "../../Utils/localstorage.tsx";
 
 export default function useAuth() {
   const dispatch = useDispatch();
@@ -16,8 +17,7 @@ export default function useAuth() {
 
       const user: User = await loginGetUserByToken(token);
 
-      localStorage.setItem("token", token);
-      console.log(localStorage.getItem("token"));
+      setItem("token", token);
 
       dispatch(setAuthorizedUser(user));
 
@@ -29,7 +29,7 @@ export default function useAuth() {
   }
 
   async function logout(){
-    localStorage.removeItem("token");
+    removeItem("token");
     dispatch(clearAuthorizedUser());
     navigate("/login");
   }
