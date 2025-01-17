@@ -5,6 +5,7 @@ import { FaHome, FaUser } from 'react-icons/fa';
 import { SiNetlify } from 'react-icons/si';
 import Button from "./Button.tsx";
 import useAuth from "../Features/Authentication/useAuth.tsx";
+import {getItem} from "../Utils/localstorage.tsx";
 
 const NavbarContainer = styled.nav`
   display: flex;
@@ -68,7 +69,7 @@ const Navbar = () => {
       <NavLinksRight>
           <NavLinkStyled to="/account">Account</NavLinkStyled>
           <NavLinkStyled to="/login">Login</NavLinkStyled>
-          <Button onClick={logout}>Logout</Button>
+          {getItem("token") && <Button onClick={logout}>Logout</Button>}
       </NavLinksRight>
     </NavbarContainer>
   );
