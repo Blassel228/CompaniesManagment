@@ -6,6 +6,7 @@ import { SiNetlify } from 'react-icons/si';
 import Button from "./Button.tsx";
 import useAuth from "../Features/Authentication/useAuth.tsx";
 import {getItem} from "../Utils/localstorage.tsx";
+import {routerKeys} from "../Constants/routerKeys.tsx";
 
 const NavbarContainer = styled.nav`
   display: flex;
@@ -64,11 +65,12 @@ const Navbar = () => {
         <IconContainer>
           <FaUser size={24} color="#fff" />
         </IconContainer>
-        <NavLinkStyled to="/dashboard">Dashboard</NavLinkStyled>
+        <NavLinkStyled to={routerKeys.dashboard}>Dashboard</NavLinkStyled>
       </NavLinksLeft>
       <NavLinksRight>
           <NavLinkStyled to="/account">Account</NavLinkStyled>
-          <NavLinkStyled to="/login">Login</NavLinkStyled>
+          <NavLinkStyled to={routerKeys.login}>Login</NavLinkStyled>
+          <NavLinkStyled to={routerKeys.register}>Register</NavLinkStyled>
           {getItem("token") && <Button onClick={logout}>Logout</Button>}
       </NavLinksRight>
     </NavbarContainer>

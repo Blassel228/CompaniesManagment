@@ -4,6 +4,13 @@ export interface User{
     email: string
 }
 
-interface UserResponse{
+export interface CreateUser{
+    username: string,
+    email: string
+    password: string
+}
 
+export interface UserResponse{
+    username: string,
+    email: string
 }
