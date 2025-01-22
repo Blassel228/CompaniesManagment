@@ -24,7 +24,7 @@ export default function useAuth() {
       navigate("/welcome");
 
     } catch (error) {
-      console.error(error.response?.detail || "Error logging in:", error);
+      throw new Error(error.message|| "Error logging in");
     }
   }
 

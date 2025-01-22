@@ -1,60 +1,32 @@
-import styled from "styled-components";
 import Button from "../../Components/Button";
+import Form from "../../Components/Form.tsx";
+import Input from "../../Components/Input.tsx";
+import Label from "../../Components/Label.tsx";
 import useAuth from "./useAuth";
 import { useState } from "react";
 
-const Form = styled.form`
-  background-color: #1a1a1a;
-  width: 50rem;
-  height: 27rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  row-gap: 0.5rem;
-  border-radius: 8px;
-`;
-
-const Input = styled.input`
-  background-color: #1a1a1a;
-  width: 40rem;
-  height: 4rem;
-  margin: 1rem 0;
-  padding: 1rem;
-  color: white;
-  border: 1px solid #333;
-  border-radius: 4px;
-  font-size: 1.6rem;
-  display: block;
-`;
-
-const Label = styled.label`
-  font-family: 'Consolas', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
-  font-size: 1.6rem;
-  color: white;
-  margin-bottom: 0.5rem;
-  display: block;
-`;
 
 export default function AuthenticationForm() {
   const { login } = useAuth();
   const [password, setPassword] = useState<string>("");
   const [username, setUsername] = useState<string>("");
-  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     setLoading(true);
     try {
-      await login(username, password);
+        await login(username, password);
     } catch (error) {
-      throw new Error(error.response?.data?.detail || "Something went wrong");
+        setError(error.message)
+        throw new Error(error.message || "Something went wrong");
     } finally {
-      setLoading(false);
+        setLoading(false);
     }
   };
 
   return (
-    <Form>
+    <Form size="medium">
       <div>
         <Label htmlFor="username">Username</Label>
         <Input
@@ -76,8 +48,13 @@ export default function AuthenticationForm() {
         />
       </div>
       <Button type="submit" disabled={loading} onClick={handleSubmit}>
-        {loading ? "Loading..." : "Submit Form"}
+        {loading ? "Loading..." : "Login"}
       </Button>
+       {error && (
+        <div style={{ color: "red", marginTop: "10px" }}>
+          <strong>Error: {error}</strong>
+        </div>
+      )}
     </Form>
   );
 }
