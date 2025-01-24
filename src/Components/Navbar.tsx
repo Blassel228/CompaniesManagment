@@ -5,8 +5,12 @@ import { FaHome, FaUser } from 'react-icons/fa';
 import { SiNetlify } from 'react-icons/si';
 import Button from "./Button.tsx";
 import useAuth from "../Features/Authentication/useAuth.tsx";
-import {getItem} from "../Utils/localstorage.tsx";
-import {routerKeys} from "../Constants/routerKeys.tsx";
+import { getItem } from "../Utils/localstorage.tsx";
+import { routerKeys } from "../Constants/routerKeys.tsx";
+import { ImageCircleView } from "./ImageCircleView.tsx";
+import { UploadImage } from "./UploadImage.tsx";
+import { useSelector } from "react-redux";
+import { RootState } from "../Store/store.tsx";
 
 const NavbarContainer = styled.nav`
   display: flex;
@@ -51,6 +55,11 @@ const IconContainer = styled.div`
 
 const Navbar = () => {
     const { logout } = useAuth();
+    const user = useSelector((state: RootState) => state.user.user);
+    const profileImage = user?.profileImage;
+
+    const hasProfileImage = profileImage && profileImage.length > 0;
+
   return (
     <NavbarContainer>
       <NavLinksLeft>
@@ -58,20 +67,28 @@ const Navbar = () => {
             <SiNetlify size={40}/>
         </IconContainer>
         <IconContainer>
-          <Link to="/welcome">
+          <Link to={routerKeys.welcome}>
             <FaHome size={24} color="#fff" />
           </Link>
         </IconContainer>
-        <IconContainer>
-          <FaUser size={24} color="#fff" />
-        </IconContainer>
+       <Link to={routerKeys.account}>
+          <ImageCircleView size="small" hasimage={hasProfileImage}>
+            {hasProfileImage ? (
+              <UploadImage src={`data:image/png;base64,${profileImage}`} alt="Profile" />
+            ) : (
+              <FaUser size={24} color="#fff" />
+            )}
+          </ImageCircleView>
+        </Link>
+
         <NavLinkStyled to={routerKeys.dashboard}>Dashboard</NavLinkStyled>
       </NavLinksLeft>
+
       <NavLinksRight>
-          <NavLinkStyled to="/account">Account</NavLinkStyled>
+          <NavLinkStyled to={routerKeys.account}>Account</NavLinkStyled>
           <NavLinkStyled to={routerKeys.login}>Login</NavLinkStyled>
           <NavLinkStyled to={routerKeys.register}>Register</NavLinkStyled>
-          {getItem("token") && <Button onClick={logout}>Logout</Button>}
+          {getItem("token") ? <Button onClick={logout}>Logout</Button> : undefined}
       </NavLinksRight>
     </NavbarContainer>
   );

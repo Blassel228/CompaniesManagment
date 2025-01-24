@@ -1,10 +1,11 @@
-import {clearAuthorizedUser, setAuthorizedUser} from "../../Store/slices/authorizedUserSlice";
+import {clearAuthorizedUser, setAuthorizedUser, setProfileImage} from "../../Store/slices/authorizedUserSlice";
 import { loginGetToken, loginGetUserByToken } from "../../Api/apiAuth";
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import TokenResponse from "../../Types/TokenResponse";
 import { User } from "../../Types/User";
 import {removeItem, setItem} from "../../Utils/localstorage.tsx";
+import {getImage} from "../../Api/imageApi.tsx";
 
 export default function useAuth() {
   const dispatch = useDispatch();
@@ -16,19 +17,21 @@ export default function useAuth() {
       const token = response.access_token;
 
       const user: User = await loginGetUserByToken(token);
-
       setItem("token", token);
-
       dispatch(setAuthorizedUser(user));
 
-      navigate("/welcome");
+      if (user?.id) {
+        const profileImage = await getImage(user.id);
+        dispatch(setProfileImage(profileImage.image_data));
+      }
 
+      navigate("/welcome");
     } catch (error) {
-      throw new Error(error.message|| "Error logging in");
+      throw new Error(error.message || "Error logging in");
     }
   }
 
-  async function logout(){
+  async function logout() {
     removeItem("token");
     dispatch(clearAuthorizedUser());
     navigate("/login");
