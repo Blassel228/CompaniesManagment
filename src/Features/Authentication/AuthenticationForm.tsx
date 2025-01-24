@@ -4,6 +4,7 @@ import Input from "../../Components/Input.tsx";
 import Label from "../../Components/Label.tsx";
 import useAuth from "./useAuth";
 import { useState } from "react";
+import {ErrorText} from "../../Components/Error.tsx";
 
 
 export default function AuthenticationForm() {
@@ -51,9 +52,7 @@ export default function AuthenticationForm() {
         {loading ? "Loading..." : "Login"}
       </Button>
        {error && (
-        <div style={{ color: "red", marginTop: "10px" }}>
-          <strong>Error: {error}</strong>
-        </div>
+        <ErrorText>Error: {error}</ErrorText>
       )}
     </Form>
   );

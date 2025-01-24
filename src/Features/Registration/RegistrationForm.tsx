@@ -5,6 +5,7 @@ import Label from "../../Components/Label.tsx";
 import { useState } from "react";
 import { createUser } from "../../Api/apiRegister.tsx";
 import { CreateUser } from "../../Types/User.tsx";
+import {ErrorText} from "../../Components/Error.tsx";
 
 export default function RegistrationForm() {
   const [user, setUser] = useState<CreateUser>({
@@ -81,9 +82,7 @@ export default function RegistrationForm() {
         {"Register"}
       </Button>
         {error && (
-        <div style={{ color: "red", marginTop: "10px" }}>
-          <strong>Error: {error}</strong>
-        </div>
+            <ErrorText>Error: {error}</ErrorText>
       )}
     </Form>
   );
