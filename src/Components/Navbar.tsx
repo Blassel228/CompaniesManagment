@@ -12,6 +12,10 @@ import { UploadImage } from "./UploadImage.tsx";
 import { useSelector } from "react-redux";
 import { RootState } from "../Store/store.tsx";
 
+
+ // TODO: Replace all elements with flex-direction to rows components
+
+
 const NavbarContainer = styled.nav`
   display: flex;
   justify-content: space-between;
