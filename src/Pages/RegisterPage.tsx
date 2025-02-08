@@ -13,7 +13,7 @@ const Container = styled.div`
 export default function RegisterPage() {
     return(
         <>
-        <Navbar />
+        <Navbar/>
         <FormLayout >
             <Container>
               <Logo size={70}/>

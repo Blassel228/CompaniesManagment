@@ -11,6 +11,7 @@ import { ImageCircleView } from "./ImageCircleView.tsx";
 import { UploadImage } from "./UploadImage.tsx";
 import { useSelector } from "react-redux";
 import { RootState } from "../Store/store.tsx";
+import {NavLinkStyledNavbar} from "./StyledLink.tsx";
 
 const NavbarContainer = styled.nav`
   display: flex;
@@ -34,18 +35,6 @@ const NavLinksRight = styled.div`
   column-gap: 2rem;
 `;
 
-const NavLinkStyled = styled(Link)`
-  text-decoration: none;
-  color: #fff;
-  font-size: 1.6rem;
-  font-family: 'Consolas', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
-  margin-right: 2rem;
-  transition: color 0.3s ease;
-
-  &:hover {
-    color: #6200ea;
-  }
-`;
 
 const IconContainer = styled.div`
   display: flex;
@@ -53,25 +42,27 @@ const IconContainer = styled.div`
   margin-right: 1rem;
 `;
 
-const Navbar = () => {
-    const { logout } = useAuth();
-    const user = useSelector((state: RootState) => state.user.user);
-    const profileImage = user?.profileImage;
+const Navbar = ({ showIcon = true }: { showIcon?: boolean }) => {
+  const { logout } = useAuth();
+  const user = useSelector((state: RootState) => state.user.user);
+  const profileImage = user?.profileImage;
 
-    const hasProfileImage = profileImage && profileImage.length > 0;
+  const hasProfileImage = profileImage && profileImage.length > 0;
 
   return (
     <NavbarContainer>
       <NavLinksLeft>
-        <IconContainer>
-            <SiNetlify size={40}/>
-        </IconContainer>
+        {showIcon && (
+          <IconContainer>
+            <SiNetlify size={40} />
+          </IconContainer>
+        )}
         <IconContainer>
           <Link to={routerKeys.welcome}>
             <FaHome size={24} color="#fff" />
           </Link>
         </IconContainer>
-       <Link to={routerKeys.account}>
+        <Link to={routerKeys.account}>
           <ImageCircleView size="small" hasimage={hasProfileImage}>
             {hasProfileImage ? (
               <UploadImage src={`data:image/png;base64,${profileImage}`} alt="Profile" />
@@ -81,17 +72,18 @@ const Navbar = () => {
           </ImageCircleView>
         </Link>
 
-        <NavLinkStyled to={routerKeys.dashboard}>Dashboard</NavLinkStyled>
+        <NavLinkStyledNavbar to={routerKeys.dashboard}>Dashboard</NavLinkStyledNavbar>
       </NavLinksLeft>
 
       <NavLinksRight>
-          <NavLinkStyled to={routerKeys.account}>Account</NavLinkStyled>
-          <NavLinkStyled to={routerKeys.login}>Login</NavLinkStyled>
-          <NavLinkStyled to={routerKeys.register}>Register</NavLinkStyled>
-          {getItem("token") ? <Button onClick={logout}>Logout</Button> : undefined}
+        <NavLinkStyledNavbar to={routerKeys.account}>Account</NavLinkStyledNavbar>
+        <NavLinkStyledNavbar to={routerKeys.login}>Login</NavLinkStyledNavbar>
+        <NavLinkStyledNavbar to={routerKeys.register}>Register</NavLinkStyledNavbar>
+        {getItem("token") ? <Button onClick={logout}>Logout</Button> : undefined}
       </NavLinksRight>
     </NavbarContainer>
   );
 };
 
 export default Navbar;
+

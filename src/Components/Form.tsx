@@ -2,13 +2,13 @@ import styled, { css } from "styled-components";
 
 const sizes = {
   small: css`
-    height: ${({ height = "20rem" }) => height};
+    height: 20rem;
   `,
   medium: css`
-    height: ${({ height = "27rem" }) => height};
+    height: 27rem;
   `,
   large: css`
-    height: ${({ height = "50rem" }) => height};
+    height: 50rem ;
   `,
 };
 

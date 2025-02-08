@@ -2,7 +2,7 @@ import {clearAuthorizedUser, setAuthorizedUser, setProfileImage} from "../../Sto
 import { loginGetToken, loginGetUserByToken } from "../../Api/apiAuth";
 import {useDispatch, useSelector} from 'react-redux';
 import { useNavigate } from "react-router-dom";
-import TokenResponse from "../../Types/TokenResponse";
+import Token from "../../Types/Token.tsx";
 import { User } from "../../Types/User";
 import {removeItem, setItem} from "../../Utils/localstorage.tsx";
 import {getImage} from "../../Api/imageApi.tsx";
@@ -13,7 +13,7 @@ export default function useAuth() {
 
   async function login(username: string, password: string): Promise<void> {
     try {
-      const response: TokenResponse = await loginGetToken(username, password);
+      const response: Token = await loginGetToken(username, password);
       const token = response.access_token;
 
       const user: User = await loginGetUserByToken(token);

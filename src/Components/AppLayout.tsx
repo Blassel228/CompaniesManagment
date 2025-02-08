@@ -1,12 +1,23 @@
-import * as React from 'react';
+import * as React from "react";
 import styled from "styled-components";
 import Navbar from "./Navbar";
-import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar.tsx";
+
+const ChildrenContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  border-radius: 8px;
+  background-color: #1f1f1f;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: none;
+  height: 100%;
+`;
 
 const StyledLayout = styled.div`
   display: grid;
-  grid-template-rows: auto 1fr;  
+  grid-template-rows: auto 1fr;
   grid-template-columns: 0.5fr 2fr;
   grid-template-areas: 
     "sidebar navbar" 
@@ -16,32 +27,36 @@ const StyledLayout = styled.div`
 `;
 
 const NavbarStyled = styled.div`
-  grid-area: navbar; 
+  grid-area: navbar;
 `;
 
 const SidebarStyled = styled.div`
-  grid-area: sidebar; 
-  background-color: #2a2a2a; 
+  grid-area: sidebar;
+  background-color: #171616;
 `;
 
 const Main = styled.main`
-  grid-area: main; 
-  background-color: #1a1a1a;
+  grid-area: main;
+  background-color: #121212;
+  padding: 2rem;
   height: 100%;
+  overflow-y: auto;
 `;
 
-export default function AppLayout(){
+export default function AppLayout({ children }) {
   return (
     <StyledLayout>
       <NavbarStyled>
-        <Navbar />
+        <Navbar showIcon={false}/>
       </NavbarStyled>
       <SidebarStyled>
         <Sidebar />
       </SidebarStyled>
       <Main>
-        <Outlet />
+          <ChildrenContainer>
+            {children}
+          </ChildrenContainer>
       </Main>
     </StyledLayout>
   );
-};
+}

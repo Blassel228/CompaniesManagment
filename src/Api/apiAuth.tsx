@@ -1,9 +1,9 @@
 import baseApi from "./baseApi";
-import TokenResponse  from "../Types/TokenResponse";
+import Token  from "../Types/Token.tsx";
 import { AxiosError } from "axios";
 import {User} from "../Types/User.tsx";
 
-export async function loginGetToken(username: string, password: string): Promise<TokenResponse> {
+export async function loginGetToken(username: string, password: string): Promise<Token> {
   try {
    const response = await baseApi.post(
         `/token/login`,

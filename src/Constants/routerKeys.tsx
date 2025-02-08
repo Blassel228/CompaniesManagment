@@ -3,5 +3,8 @@ export const routerKeys ={
     dashboard: "/dashboard",
     login: "/login",
     register: "/register",
-    account: "/account"
+    account: "/account",
+    company: "/company",
+    update: "/update",
+
 }

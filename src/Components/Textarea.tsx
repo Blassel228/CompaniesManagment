@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-const Input = styled.input.attrs((props) => ({
+const TextArea = styled.textarea.attrs((props) => ({
   ...props,
 }))`
   background-color: #1a1a1a;
   width: 40rem;
-  height: 4rem;
+  height: 10rem;
   margin: 1rem 0;
   padding: 1rem;
   color: white;
@@ -13,6 +13,7 @@ const Input = styled.input.attrs((props) => ({
   border-radius: 4px;
   font-size: 1.6rem;
   display: block;
+  resize: vertical;
 `;
 
-export default Input;
+export default TextArea;

@@ -1,6 +1,8 @@
 import styled, { css } from "styled-components";
 
-export const ImageCircleView = styled.label<{ hasimage: boolean; size: keyof typeof sizes }>`
+export const ImageCircleView = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== "hasimage",
+})<{ hasimage: boolean; size: keyof typeof sizes }>`
   ${({ size }) => sizes[size]}
   border-radius: 50%;
   background-color: ${({ hasimage }) => (hasimage ? "transparent" : "#6200ea")};
