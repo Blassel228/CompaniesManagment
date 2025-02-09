@@ -47,7 +47,7 @@ export default function useAuth() {
       const response = await baseApi.post(`/token/refresh/`, {
         token: refreshToken,
       });
-      console.log(`REFRESH TOKEN: ${response}`);
+
       const newAccessToken = response.data.access_token;
       console.log(`REFRESH TOKEN: ${response}`);
 
