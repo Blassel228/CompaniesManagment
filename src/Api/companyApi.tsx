@@ -42,10 +42,8 @@ export async function updateCompanyApi(
 
 export async function getCompaniesApi(): Promise<CompanyListResponse> {
   try {
-     const response = await baseApi.get("/company/visible");
-     console.log("response");
-    response.data.map((company) => {console.log(JSON.stringify(company))});
-    return response.data;
+      const response = await baseApi.get("/company/visible");
+      return response.data;
   } catch (error) {
     if (error instanceof AxiosError) {
       throw new Error(error.response?.data?.detail || "Company creation failed");
