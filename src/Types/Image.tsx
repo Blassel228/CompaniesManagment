@@ -1,4 +1,4 @@
-export interface ImageResponse{
-    file_name: string
-    image_data: string
+export interface ImageResponse {
+  file_name: string;
+  image_data: string;
 }

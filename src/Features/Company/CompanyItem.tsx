@@ -87,33 +87,37 @@ const Spinner = styled.div`
   animation: ${spin} 0.6s linear infinite;
 `;
 
-export function CompanyItem({company}: Company) {
+export function CompanyItem({ company }: Company) {
   const { description, name, id } = company;
   const { deleteCompany, isDeleting } = useDeleteCompany();
-  const {goTo} = useNavigation();
+  const { goTo } = useNavigation();
 
-  async function handleClickEdit(){
-       goTo(`/update-company/${id}`, { state: { company } });
+  async function handleClickEdit() {
+    goTo(`/update-company/${id}`, { state: { company } });
   }
 
-  async function handleDelete(){
-    const confirmed = window.confirm(`Are you sure you want to delete "${name}"?`);
+  async function handleDelete() {
+    const confirmed = window.confirm(
+      `Are you sure you want to delete "${name}"?`,
+    );
     if (confirmed) {
       await deleteCompany(id);
     }
-  };
+  }
 
   return (
     <CompanyCard>
       <CompanyName>{name}</CompanyName>
       <CompanyDescription>{description}</CompanyDescription>
       <ButtonGroup>
-        <Button className="edit" disabled={isDeleting} onClick={handleClickEdit}>Edit</Button>
         <Button
-          className="delete"
-          onClick={handleDelete}
+          className="edit"
           disabled={isDeleting}
+          onClick={handleClickEdit}
         >
+          Edit
+        </Button>
+        <Button className="delete" onClick={handleDelete} disabled={isDeleting}>
           {isDeleting ? (
             <>
               <Spinner /> Deleting...

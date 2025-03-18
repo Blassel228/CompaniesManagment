@@ -4,8 +4,7 @@ import Input from "../../Components/Input.tsx";
 import Label from "../../Components/Label.tsx";
 import useAuth from "./useAuth";
 import { useState } from "react";
-import {ErrorText} from "../../Components/Error.tsx";
-
+import { ErrorText } from "../../Components/Error.tsx";
 
 export default function AuthenticationForm() {
   const { login } = useAuth();
@@ -17,12 +16,12 @@ export default function AuthenticationForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     setLoading(true);
     try {
-        await login(username, password);
+      await login(username, password);
     } catch (error) {
-        setError(error.message)
-        throw new Error(error.message || "Something went wrong");
+      setError(error.message);
+      throw new Error(error.message || "Something went wrong");
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
   };
 
@@ -51,9 +50,7 @@ export default function AuthenticationForm() {
       <Button type="submit" disabled={loading} onClick={handleSubmit}>
         {loading ? "Loading..." : "Login"}
       </Button>
-       {error && (
-        <ErrorText>Error: {error}</ErrorText>
-      )}
+      {error && <ErrorText>Error: {error}</ErrorText>}
     </Form>
   );
 }

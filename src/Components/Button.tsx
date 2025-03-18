@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const UploadActionButton = styled.button`
   padding: 1rem 2rem;
   background-color: #28a745;
@@ -23,7 +22,6 @@ export const UploadActionButton = styled.button`
     cursor: not-allowed;
   }
 `;
-
 
 const Button = styled.button`
   padding: 1rem 2rem;

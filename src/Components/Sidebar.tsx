@@ -1,8 +1,8 @@
 import * as React from "react";
 import Logo from "./Logo.tsx";
 import styled from "styled-components";
-import {NavLinkStyledSidebar} from "./StyledLink.tsx";
-import {routerKeys} from "../Constants/routerKeys.tsx";
+import { NavLinkStyledSidebar } from "./StyledLink.tsx";
+import { routerKeys } from "../Constants/routerKeys.tsx";
 
 /* TODO: ADD icons to every link */
 
@@ -22,7 +22,9 @@ const CompanyName = styled.h2`
   font-size: 1.6rem;
   font-weight: bold;
   color: white;
-   font-family: 'Consolas', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+  font-family:
+    "Consolas", "Menlo", "DejaVu Sans Mono", "Bitstream Vera Sans Mono",
+    monospace;
 `;
 
 const NavList = styled.ul`
@@ -36,9 +38,10 @@ const NavItem = styled.li`
   width: 100%;
   display: flex;
   justify-content: center;
-  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  transition:
+    transform 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
 `;
-
 
 export default function Sidebar() {
   return (
@@ -50,7 +53,9 @@ export default function Sidebar() {
 
       <NavList>
         <NavItem>
-          <NavLinkStyledSidebar to={routerKeys.company}>Companies</NavLinkStyledSidebar>
+          <NavLinkStyledSidebar to={routerKeys.company}>
+            Companies
+          </NavLinkStyledSidebar>
         </NavItem>
       </NavList>
     </SidebarContainer>

@@ -1,11 +1,13 @@
 import baseApi from "./baseApi";
 import { AxiosError } from "axios";
-import {ImageResponse} from "../Types/Image.tsx";
-import {getItem} from "../Utils/localstorage.tsx";
+import { ImageResponse } from "../Types/Image.tsx";
+import { getItem } from "../Utils/localstorage.tsx";
 
 export async function getImage(userId: number): Promise<ImageResponse> {
   try {
-    const response = await baseApi.get<ImageResponse>(`/image/get_one_by_user_id/${userId}`);
+    const response = await baseApi.get<ImageResponse>(
+      `/image/get_one_by_user_id/${userId}`,
+    );
     return response.data as ImageResponse;
   } catch (error) {
     if (error instanceof AxiosError) {
@@ -15,7 +17,7 @@ export async function getImage(userId: number): Promise<ImageResponse> {
   }
 }
 
-export async function uploadImage(file: File){
+export async function uploadImage(file: File) {
   try {
     const formData = new FormData();
     formData.append("file", file);
@@ -26,8 +28,7 @@ export async function uploadImage(file: File){
         Authorization: `Bearer ${getItem("token")}`,
       },
     });
-
   } catch (error) {
     throw new Error(error.response?.data?.detail);
   }
-};
+}

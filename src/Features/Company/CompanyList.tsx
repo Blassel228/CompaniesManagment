@@ -1,7 +1,6 @@
 import { useGetCompanies } from "./useGetCompanies.tsx";
 import { CompanyItem } from "./CompanyItem.tsx";
 
-
 export function CompanyList() {
   const { isLoading, companies, error } = useGetCompanies();
   if (isLoading) return <p>Loading...</p>;
@@ -10,10 +9,7 @@ export function CompanyList() {
   return (
     <>
       {companies.map((company) => (
-        <CompanyItem
-          key={company.id}
-          company={company}
-        />
+        <CompanyItem key={company.id} company={company} />
       ))}
     </>
   );

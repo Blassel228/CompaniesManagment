@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "../../Types/User";
 
 const initialState: { user: User | null } = {
@@ -6,7 +6,7 @@ const initialState: { user: User | null } = {
 };
 
 const fetchedUserSlice = createSlice({
-  name: 'fetchedUser',
+  name: "fetchedUser",
   initialState,
   reducers: {
     setFetchedUser(state, action: PayloadAction<User>) {

@@ -1,11 +1,15 @@
-import {clearAuthorizedUser, setAuthorizedUser, setProfileImage} from "../../Store/slices/authorizedUserSlice";
+import {
+  clearAuthorizedUser,
+  setAuthorizedUser,
+  setProfileImage,
+} from "../../Store/slices/authorizedUserSlice";
 import { loginGetToken, loginGetUserByToken } from "../../Api/apiAuth";
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Token from "../../Types/Token.tsx";
 import { User } from "../../Types/User";
-import {removeItem, setItem} from "../../Utils/localstorage.tsx";
-import {getImage} from "../../Api/imageApi.tsx";
+import { removeItem, setItem } from "../../Utils/localstorage.tsx";
+import { getImage } from "../../Api/imageApi.tsx";
 
 export default function useAuth() {
   const dispatch = useDispatch();

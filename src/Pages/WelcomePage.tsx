@@ -1,5 +1,5 @@
-import * as React from 'react';
-import styled from 'styled-components';
+import * as React from "react";
+import styled from "styled-components";
 import Navbar from "../Components/Navbar.tsx";
 import Button from "../Components/Button.tsx";
 
@@ -8,7 +8,7 @@ const PageWrapper = styled.div`
   flex-direction: column;
   height: 100vh;
   background-color: #121212;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
 `;
 
 const WelcomeContent = styled.div`
@@ -19,7 +19,9 @@ const WelcomeContent = styled.div`
   align-items: center;
   flex-grow: 1;
   padding: 2rem;
-  font-family: 'Consolas', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+  font-family:
+    "Consolas", "Menlo", "DejaVu Sans Mono", "Bitstream Vera Sans Mono",
+    monospace;
 `;
 
 const Heading = styled.h1`

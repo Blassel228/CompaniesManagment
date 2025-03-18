@@ -1,11 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { persistReducer, persistStore } from 'redux-persist';
-import authorizedUserSlice from './slices/authorizedUserSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import { persistReducer, persistStore } from "redux-persist";
+import authorizedUserSlice from "./slices/authorizedUserSlice";
 import fetchedUserSlice from "./slices/fetchedUserSlice";
 import storage from "redux-persist/lib/storage";
 
 const persistConfig = {
-  key: 'userSession',
+  key: "userSession",
   storage,
 };
 
@@ -19,7 +19,7 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: ['persist/PERSIST'],
+        ignoredActions: ["persist/PERSIST"],
       },
     }),
 });

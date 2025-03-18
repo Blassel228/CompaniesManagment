@@ -1,9 +1,9 @@
-import React from 'react';
-import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import {getItem} from "../Utils/localstorage.tsx";
+import React from "react";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { getItem } from "../Utils/localstorage.tsx";
 
 const checkAuth = (): boolean => {
-  return Boolean(getItem('token'));
+  return Boolean(getItem("token"));
 };
 
 const PrivateRoute: React.FC = () => {

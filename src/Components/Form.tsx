@@ -8,7 +8,7 @@ const sizes = {
     height: 27rem;
   `,
   large: css`
-    height: 50rem ;
+    height: 50rem;
   `,
 };
 

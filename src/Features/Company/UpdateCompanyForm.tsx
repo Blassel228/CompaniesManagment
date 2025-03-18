@@ -1,4 +1,4 @@
-import {useLocation} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
@@ -11,7 +11,7 @@ import Input from "../../Components/Input.tsx";
 import Textarea from "../../Components/Textarea.tsx";
 import styled from "styled-components";
 import useNavigation from "../../Utils/navigate.tsx";
-import {ErrorText} from "../../Components/Error.tsx";
+import { ErrorText } from "../../Components/Error.tsx";
 
 const Container = styled.div`
   display: flex;
@@ -48,7 +48,7 @@ const BackButton = styled.button`
 `;
 
 export default function CompanyUpdateForm() {
-  const {goBack} = useNavigation();
+  const { goBack } = useNavigation();
   const location = useLocation();
   const company: Company = location.state?.company;
 
@@ -85,7 +85,7 @@ export default function CompanyUpdateForm() {
       <Container>
         <FormWrapper>
           <BackButton onClick={goBack}>
-            <ArrowLeft/>
+            <ArrowLeft />
           </BackButton>
 
           <form onSubmit={handleSubmit(handleUpdateCompanySubmit)}>
@@ -103,9 +103,13 @@ export default function CompanyUpdateForm() {
               <Label htmlFor="description">Description</Label>
               <Textarea
                 id="description"
-                {...register("description", { required: "Description is required" })}
+                {...register("description", {
+                  required: "Description is required",
+                })}
               />
-              <ErrorText>{errors.description && errors.description.message}</ErrorText>
+              <ErrorText>
+                {errors.description && errors.description.message}
+              </ErrorText>
             </div>
 
             <Button type="submit" disabled={isUpdating}>

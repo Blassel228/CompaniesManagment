@@ -2,15 +2,11 @@ import baseApi from "./baseApi";
 import { AxiosError } from "axios";
 import { CreateUser, UserResponse } from "../Types/User";
 
-export async function createUser(
-  user: CreateUser
-): Promise<UserResponse> {
+export async function createUser(user: CreateUser): Promise<UserResponse> {
   try {
-     const response = await baseApi.post<UserResponse>("/user/", {
+    const response = await baseApi.post<UserResponse>("/user/", {
       ...user,
     });
-
-    console.log("Response from createUser:", response);
 
     return response.data as UserResponse;
   } catch (error) {

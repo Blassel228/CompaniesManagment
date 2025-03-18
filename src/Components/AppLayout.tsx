@@ -19,9 +19,9 @@ const StyledLayout = styled.div`
   display: grid;
   grid-template-rows: auto 1fr;
   grid-template-columns: 0.5fr 2fr;
-  grid-template-areas: 
-    "sidebar navbar" 
-    "sidebar main"; 
+  grid-template-areas:
+    "sidebar navbar"
+    "sidebar main";
   background-color: black;
   height: 100vh;
 `;
@@ -47,15 +47,13 @@ export default function AppLayout({ children }) {
   return (
     <StyledLayout>
       <NavbarStyled>
-        <Navbar showIcon={false}/>
+        <Navbar showIcon={false} />
       </NavbarStyled>
       <SidebarStyled>
         <Sidebar />
       </SidebarStyled>
       <Main>
-          <ChildrenContainer>
-            {children}
-          </ChildrenContainer>
+        <ChildrenContainer>{children}</ChildrenContainer>
       </Main>
     </StyledLayout>
   );

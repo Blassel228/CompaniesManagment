@@ -1,8 +1,8 @@
-import * as React from 'react';
+import * as React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { FaHome, FaUser } from 'react-icons/fa';
-import { SiNetlify } from 'react-icons/si';
+import { FaHome, FaUser } from "react-icons/fa";
+import { SiNetlify } from "react-icons/si";
 import Button from "./Button.tsx";
 import useAuth from "../Features/Authentication/useAuth.tsx";
 import { getItem } from "../Utils/localstorage.tsx";
@@ -11,7 +11,7 @@ import { ImageCircleView } from "./ImageCircleView.tsx";
 import { UploadImage } from "./UploadImage.tsx";
 import { useSelector } from "react-redux";
 import { RootState } from "../Store/store.tsx";
-import {NavLinkStyledNavbar} from "./StyledLink.tsx";
+import { NavLinkStyledNavbar } from "./StyledLink.tsx";
 
 const NavbarContainer = styled.nav`
   display: flex;
@@ -34,7 +34,6 @@ const NavLinksRight = styled.div`
   align-items: center;
   column-gap: 2rem;
 `;
-
 
 const IconContainer = styled.div`
   display: flex;
@@ -65,25 +64,35 @@ const Navbar = ({ showIcon = true }: { showIcon?: boolean }) => {
         <Link to={routerKeys.account}>
           <ImageCircleView size="small" hasimage={hasProfileImage}>
             {hasProfileImage ? (
-              <UploadImage src={`data:image/png;base64,${profileImage}`} alt="Profile" />
+              <UploadImage
+                src={`data:image/png;base64,${profileImage}`}
+                alt="Profile"
+              />
             ) : (
               <FaUser size={24} color="#fff" />
             )}
           </ImageCircleView>
         </Link>
 
-        <NavLinkStyledNavbar to={routerKeys.dashboard}>Dashboard</NavLinkStyledNavbar>
+        <NavLinkStyledNavbar to={routerKeys.dashboard}>
+          Dashboard
+        </NavLinkStyledNavbar>
       </NavLinksLeft>
 
       <NavLinksRight>
-        <NavLinkStyledNavbar to={routerKeys.account}>Account</NavLinkStyledNavbar>
+        <NavLinkStyledNavbar to={routerKeys.account}>
+          Account
+        </NavLinkStyledNavbar>
         <NavLinkStyledNavbar to={routerKeys.login}>Login</NavLinkStyledNavbar>
-        <NavLinkStyledNavbar to={routerKeys.register}>Register</NavLinkStyledNavbar>
-        {getItem("token") ? <Button onClick={logout}>Logout</Button> : undefined}
+        <NavLinkStyledNavbar to={routerKeys.register}>
+          Register
+        </NavLinkStyledNavbar>
+        {getItem("token") ? (
+          <Button onClick={logout}>Logout</Button>
+        ) : undefined}
       </NavLinksRight>
     </NavbarContainer>
   );
 };
 
 export default Navbar;
-

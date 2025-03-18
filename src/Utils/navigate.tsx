@@ -1,9 +1,9 @@
-import {NavigateOptions, useNavigate} from 'react-router-dom';
+import { NavigateOptions, useNavigate } from "react-router-dom";
 
 const useNavigation = () => {
   const navigate = useNavigate();
 
- function goTo(path: string, options?: NavigateOptions | undefined) {
+  function goTo(path: string, options?: NavigateOptions | undefined) {
     navigate(path, options);
   }
 

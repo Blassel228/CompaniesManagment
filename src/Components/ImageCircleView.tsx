@@ -19,7 +19,8 @@ export const ImageCircleView = styled.div.withConfig({
   transition: all 0.3s ease;
 
   &:hover {
-    background-color: ${({ hasimage }) => (hasimage ? "transparent" : "#4500a3")};
+    background-color: ${({ hasimage }) =>
+      hasimage ? "transparent" : "#4500a3"};
   }
 `;
 
